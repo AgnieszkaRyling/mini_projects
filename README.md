@@ -4,7 +4,7 @@
 #css
 #js
 #demo:
-#accordion: accordion.a-portfolio.pl
+#accordion: http://accordion.a-portfolio.pl
 #animals-cards: http://animal-cards.a-portfolio.pl/
 #animated-cup: http://animated-cup.a-portfolio.pl
 #christmas-wishes: http://christmas-wishes.a-portfolio.pl
