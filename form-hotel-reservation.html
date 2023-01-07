@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta description="A new form for making a reservation at a hotel" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hotel reservation form</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        background-image: url(https://uniqhotels.com/media/hotels/5a-hotel-orig/nandini_jungle_resort.jpg.700x345_q85_box-0%2C180%2C2000%2C1164_crop_detail.jpg);
+        background-size: cover;
+        font-family: "Roboto";
+      }
+
+      h1 {
+        font-size: 60px;
+        color: #fff;
+        text-transform: uppercase;
+        text-align: center;
+        padding: 30px;
+      }
+
+      h2 {
+        font-size: 40px;
+        color: #fff56f;
+        text-align: center;
+        padding: 20px;
+      }
+
+      input,
+      select,
+      textarea,
+      button {
+        font-size: 20px;
+        color: #000;
+        padding: 10px;
+        border: none;
+      }
+
+      input:focus,
+      select:focus,
+      textarea:focus {
+        outline: none;
+      }
+
+      .container-all {
+        width: 100%;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.5);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+      }
+
+      .form {
+        width: 80%;
+        background-color: rgba(0, 0, 0, 0.5);
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .personal-details-box,
+      .reservation-box {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: auto repeat(6, 50px);
+        gap: 20px;
+        margin: 20px;
+      }
+
+      .form-flex {
+        display: flex;
+        flex-direction: column;
+      }
+      .grid-column-two {
+        grid-column: span 2;
+      }
+
+      .grid-row-two {
+        grid-row: span 2;
+      }
+
+      .form-button {
+        color: #fff;
+        background-color: #0d8aa0;
+        cursor: pointer;
+      }
+
+      .error {
+        font-size: 12px;
+        color: #fff;
+      }
+
+      .error {
+        display: none;
+      }
+
+      .parent-error p {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container-all">
+      <h1>Heaven booking form</h1>
+      <form class="form">
+        <div class="personal-details-box">
+          <h2 class="grid-column-two">Personal details</h2>
+          <div class="form-flex">
+            <input
+              type="text"
+              id="inputFirstName"
+              class="inputValidate"
+              placeholder="Name"
+            />
+            <p class="error" id="errorFirstName">Please give us your name</p>
+          </div>
+          <div class="form-flex">
+            <input
+              type="text"
+              id="inputLastName"
+              class="inputValidate"
+              placeholder="Last name"
+            />
+            <p class="error" id="errorLastName">Please give us your name</p>
+          </div>
+          <div class="form-flex">
+            <input
+              type="text"
+              id="inputEmail"
+              class="inputValidate"
+              placeholder="Email"
+            />
+            <p class="error" id="errorEmail">
+              Please give us your email address
+            </p>
+          </div>
+          <div class="form-flex">
+            <input
+              type="text"
+              id="inputPhone"
+              class="inputValidate"
+              placeholder="Phone Number"
+            />
+            <p class="error" id="errorPhone">
+              Please give us your phone number
+            </p>
+          </div>
+          <div class="form-flex">
+            <input
+              type="text"
+              class="grid-column-two inputValidate"
+              id="inputAddress"
+              placeholder="Street Address"
+            />
+            <p class="error" id="errorAddress">Please give us your address</p>
+          </div>
+          <div class="form-flex">
+            <input
+              type="text"
+              id="inputCity"
+              class="inputValidate"
+              placeholder="City"
+            />
+            <p class="error" id="errorCity">
+              Please type your destination city
+            </p>
+          </div>
+          <div class="form-flex">
+            <input
+              type="text"
+              id="inputState"
+              class="inputValidate"
+              placeholder="State"
+            />
+            <p class="error" id="errorState">
+              Please type your destination state
+            </p>
+          </div>
+          <div class="form-flex">
+            <input
+              type="text"
+              id="inputCode"
+              class="inputValidate"
+              placeholder="Code"
+            />
+            <p class="error" id="errorCode">
+              Please type your destination city's code
+            </p>
+          </div>
+          <div class="form-flex">
+            <select id="selectCountry" class="selectValidate">
+              <option value="">Select Country</option>
+              <option value="1">United States</option>
+              <option value="2">Great Britain</option>
+              <option value="3">Portugal</option>
+              <option value="4">France</option>
+              <option value="5">Canada</option>
+              <option value="6">Spain</option>
+              <option value="7">Germany</option>
+              <option value="8">Italy</option>
+              <option value="9">Poland</option>
+              <option value="10">Greece</option>
+            </select>
+            <p class="error" id="errorCountry">
+              Please select your destination country
+            </p>
+          </div>
+        </div>
+        <div class="reservation-box">
+          <h2 class="grid-column-two">Make a reservation</h2>
+          <div class="form-flex">
+            <input
+              type="text"
+              id="inputArrivalDate"
+              class="inputValidate"
+              placeholder="Arrival - Date"
+            />
+            <p class="error" id="errorArrivalDate">
+              Please select your arrival date
+            </p>
+          </div>
+          <div class="form-flex">
+            <input
+              type="text"
+              id="inputDepartureDate"
+              class="inputValidate"
+              placeholder="Departure - Date"
+            />
+            <p class="error" id="errorDepartureDate">
+              Please select your departure date
+            </p>
+          </div>
+          <div class="form-flex">
+            <select id="selectAdults" class="selectValidate">
+              <option value="">No of Adults</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+            <p class="error" style="display: none" id="errorAdults">
+              Please select the number of adults
+            </p>
+          </div>
+          <select id="selectKids">
+            <option value="">No of Kids</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+          <div class="form-flex">
+            <select id="selectNights" class="selectValidate">
+              <option value="">No of Nights at Hotel</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+            <p class="error" id="ErrorNights">
+              How many nights are you staying?
+            </p>
+          </div>
+          <div class="form-flex">
+            <select id="selectRooms" class="selectValidate">
+              <option value="">Room preference</option>
+              <option value="1">Single room</option>
+              <option value="2">Double room</option>
+              <option value="3">Single room premium</option>
+              <option value="4">Double room premium</option>
+              <option value="5">Twin room</option>
+              <option value="6">Twin room premium</option>
+            </select>
+            <p class="error" id="errorRooms">
+              Please select your room preference
+            </p>
+          </div>
+          <textarea
+            class="grid-column-two grid-row-two"
+            id="textAreaRequests"
+            placeholder="Any special requests..."
+          ></textarea>
+          <button
+            type="button"
+            class="grid-column-two form-button"
+            id="formButton"
+          >
+            Submit
+          </button>
+        </div>
+      </form>
+    </div>
+    <script>
+      //
+      const inputFirstName = document.querySelector("#inputFirstName");
+      const inputLastName = document.querySelector("#inputLastName");
+      const inputEmail = document.querySelector("#inputEmail");
+      const inputPhone = document.querySelector("#inputPhone");
+      const inputAddress = document.querySelector("#inputAddress");
+      const inputCity = document.querySelector("#inputCity");
+      const inputState = document.querySelector("#inputState");
+      const inputCode = document.querySelector("#inputCode");
+      const selectCountry = document.querySelector("#selectCountry");
+      const inputArrivalDate = document.querySelector("#inputArrivalDate");
+      const inputDepartureDate = document.querySelector("#inputDepartureDate");
+      const selectAdults = document.querySelector("#selectAdults");
+      const selectNights = document.querySelector("#selectNights");
+      const selectRooms = document.querySelector("#selectRooms");
+      const formButton = document.querySelector("#formButton");
+      ///
+      const errorFirstName = document.querySelector("#errorFirstName");
+      const errorLastnName = document.querySelector("#errorLastName");
+      const errorEmail = document.querySelector("#errorEmail");
+      const errorPhone = document.querySelector("#errorPhone");
+      const errorAddress = document.querySelector("#errorAddress");
+      const errorCity = document.querySelector("#errorCity");
+      const errorState = document.querySelector("#errorState");
+      const errorCode = document.querySelector("#errorCode");
+      const errorCountry = document.querySelector("#errorCountry");
+      const errorArrivalDate = document.querySelector("#errorArrivalDate");
+      const errorDepartureDate = document.querySelector("#errorDepartureDate");
+      const errorAdults = document.querySelector("#errorAdults");
+      const errorNights = document.querySelector("#errorNights");
+      const errorRooms = document.querySelector("#errorRooms");
+      ///
+      const offerNights = document.querySelector("#offerNights");
+      const offerRooms = document.querySelector("#offerRooms");
+      const popUpBox = document.querySelector("#popUpBox");
+      //
+
+      const inputValidate = document.querySelectorAll(".inputValidate");
+      const selectValidate = document.querySelectorAll(".selectValidate");
+      const errorValidate = document.querySelectorAll(".error");
+      //
+
+      const validateFormInput = () => {
+        const inputsLength = inputValidate.length;
+        for (let i = 0; i < inputsLength; i++) {
+          if (!inputValidate[i].value) {
+            inputValidate[i].parentElement.classList.add("parent-error");
+          } else if (inputValidate[i].value) {
+            inputValidate[i].parentElement.classList.remove("parent-error");
+          }
+        }
+      };
+
+      const validateFormSelect = () => {
+        console.log("bbbb");
+        const selectLength = selectValidate.length;
+        for (let i = 0; i < selectLength; i++) {
+          if (selectValidate[i].value === "") {
+            selectValidate[i].parentElement.classList.add("parent-error");
+            console.log("aaa");
+          }
+        }
+      };
+
+      formButton.addEventListener("click", () => {
+        validateFormInput(), validateFormSelect();
+      });
+
+      //
+
+      inputFirstName.addEventListener("input", () => {
+        !inputFirstName.value
+          ? (errorFirstName.style.display = "block")
+          : (errorFirstName.style.display = "none");
+      });
+
+      inputLastName.addEventListener("input", () => {
+        !inputLastName.value
+          ? (errorLastName.style.display = "block")
+          : (errorLastName.style.display = "none");
+      });
+
+      inputEmail.addEventListener("input", () => {
+        !inputEmail.value
+          ? (errorEmail.style.display = "block")
+          : (errorEmail.style.display = "none");
+      });
+
+      inputPhone.addEventListener("input", () => {
+        !inputPhone.value
+          ? (errorPhone.style.display = "block")
+          : (errorPhone.style.display = "none");
+      });
+
+      inputAddress.addEventListener("input", () => {
+        !inputAddress.value
+          ? (errorAddress.style.display = "block")
+          : (errorAddress.style.display = "none");
+      });
+
+      inputCity.addEventListener("input", () => {
+        !inputCity.value
+          ? (errorCity.style.display = "block")
+          : (errorCity.style.display = "none");
+      });
+
+      inputState.addEventListener("input", () => {
+        !inputState.value
+          ? (errorState.style.display = "block")
+          : (errorState.style.display = "none");
+      });
+
+      inputCode.addEventListener("input", () => {
+        !inputCode.value
+          ? (errorCode.style.display = "block")
+          : (errorCode.style.display = "none");
+      });
+
+      inputArrivalDate.addEventListener("input", () => {
+        !inputArrivalDate.value
+          ? (errorArrivalDate.style.display = "block")
+          : (errorArrivalDate.style.display = "none");
+      });
+
+      inputDepartureDate.addEventListener("input", () => {
+        !inputDepartureDate.value
+          ? (errorDepartureDate.style.display = "block")
+          : (errorDepartureDate.style.display = "none");
+      });
+
+      //
+
+      selectCountry.addEventListener("change", () => {
+        console.log("aa");
+        !selectCountry.value
+          ? (errorCountry.style.display = "block")
+          : (errorCountry.style.display = "none");
+      });
+
+      selectAdults.addEventListener("change", () => {
+        !selectAdults.value
+          ? (errorAdults.style.display = "block")
+          : (errorAdults.style.display = "none");
+      });
+
+      selectNights.addEventListener("change", () => {
+        !selectNights.value
+          ? (errorNights.style.display = "block")
+          : (errorNights.style.display = "none");
+      });
+
+      selectRooms.addEventListener("change", () => {
+        !selectRooms.value
+          ? (errorRooms.style.display = "block")
+          : (errorRooms.style.display = "none");
+      });
+    </script>
+  </body>
+</html>

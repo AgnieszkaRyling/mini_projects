@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<body lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Menu akordeon</title>
+    <script src="https://kit.fontawesome.com/8601036ebb.js" crossorigin="anonymous"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        width: 100%;
+        min-height: 100vh;
+        background-image: url("https://img.freepik.com/free-vector/watercolor-sugar-cotton-clouds-background_52683-80661.jpg?w=1380&t=st=1671205330~exp=1671205930~hmac=240efdcbd2a998683b04c896744f8436b5171d67d77f9657ea22adc1fbad0287");
+        background-size: cover;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    
+      ul {
+        list-style: none;
+      }
+
+      .dropdown {
+        width: 100%;
+        background: transparent;
+        border: none;
+        font-size: 18px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 10px 10px 30px;
+        cursor: pointer;
+        border-bottom: 2px solid #fff;
+        transition: all 0.4s ease-out;
+      }
+
+      .dropdown:hover {
+        background: #ec94c7;
+      }
+
+      .accordion-menu {
+        max-height: 750px;
+        width: 400px;
+        background: #f5bdde;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 0 10px #9c6fa5;
+      }
+
+      .accordion-menu li:last-child{
+        border-bottom: 0;
+      }
+
+      .submenu-items {
+        display: none;
+        background: #e2cde4;
+      }
+
+      .submenu-items a{
+        text-decoration: none;
+        color: #130010;
+        display: block;
+        padding: 5px 10px;;
+      }
+      
+      .accordion-menu li.active .submenu-items {
+        display: block;
+      }
+      
+      .submenu-items li:hover {
+        background:#ffffff;
+        transition: 0.5s ease-out;
+      }
+    
+
+    </style>
+    </head>
+    <body>
+      <div class="container">
+        <ul class="accordion-menu">
+          <li class="link">
+            <button class="dropdown" id="buttonDropdown-1" >
+             <p>Ubrania damskie</p>
+             <div class="icon-box"><i class="fa-solid fa-arrow-down"></i></div>
+            </button>
+            <ul class="submenu-items" id="submenuItems-1">
+              <li><a href="#">T-shirty</a></li>
+              <li><a href="#">Spódniczki</a></li>
+              <li><a href="#">Sukienki</a></li>
+              <li><a href="#">Spodnie</a></li>
+              <li><a href="#">Swetry</a></li>
+            </ul>
+          </li>
+          <li class="link">
+            <button class="dropdown" id="buttonDropdown-2">
+             <p>Akcesoria do włosów</p> 
+             <div class="icon-box"><i class="fa-solid fa-arrow-down"></i></div>
+            </button>
+            <ul class="submenu-items" id="submenuItems-2">
+              <li><a href="#">Gumki do włosów</a></li>
+              <li><a href="#">Spinki do włosów</a></li>
+              <li><a href="#">Opaski do włosów</a></li>
+            </ul>
+          </li>
+          <li class="link">
+            <button class="dropdown" id="buttonDropdown-3">
+             <p>Biżuteria</p>
+             <div class="icon-box"><i class="fa-solid fa-arrow-down"></i></div> 
+            </button>
+            <ul class="submenu-items" id="submenuItems-3">
+              <li><a href="#">Naszyjniki</a></li>
+              <li><a href="#">Pierścionki</a></li>
+              <li><a href="#">Kolczyki</a></li>
+            </ul>
+          </li>
+          <li class="link">
+            <button class="dropdown" id="buttonDropdown-4">
+            <p>Kosmetyki</p>  
+            <div class="icon-box"><i class="fa-solid fa-arrow-down"></i></div>
+            </button>
+            <ul class="submenu-items" id="submenuItems-4">
+              <li><a href="#">Kremy do twarzy</a></li>
+              <li><a href="#">Błyszczyki do ust</a></li>
+              <li><a href="#">Kolorowe tusze do rzęs</a></li>
+            </ul>
+          </li>
+          <li class="link">
+            <button class="dropdown" id="buttonDropdown-4">
+            <p>Buty</p>  
+            <div class="icon-box"><i class="fa-solid fa-arrow-down"></i></div>
+            </button>
+            <ul class="submenu-items" id="submenuItems-5">
+              <li><a href="#">Buty na obcasie</a></li>
+              <li><a href="#">Czułenka</a></li>
+              <li><a href="#">Sandały</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <script>
+       let listElements = document.querySelectorAll('.link');
+
+       listElements.forEach(listElement => {
+        listElement.addEventListener("click", () => {
+          if (listElement.classList.contains("active")) {
+            listElement.classList.remove("active");
+          } else if (!listElement.classList.contains("active")) {
+            listElement.classList.add("active");
+          }
+        })}
+      );
+       
+      </script>
+    </body>
+    </html>
+
+    <!-- attribution:
+    background: <a href="https://www.freepik.com/free-vector/watercolor-sugar-cotton-clouds-background_22378664.htm#query=cute%20background&position=5&from_view=keyword">Image by pikisuperstar</a> on Freepik
+    arrow-down icon: <a href="https://www.flaticon.com/free-icons/dropdown-arrow" title="dropdown arrow icons">Dropdown arrow icons created by phatplus - Flaticon</a>
+  -->

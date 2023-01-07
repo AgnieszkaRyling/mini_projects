@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Multiform registration</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Quicksand&display=swap");
+      * {
+        margin: 0;
+        padding: 0;
+        font-family: "Quicksand";
+      }
+
+      button {
+        width: 110px;
+        height: 35px;
+        margin: 0 10px;
+        background-image: linear-gradient(
+          64.3deg,
+          rgba(254, 122, 152, 0.81) 17.7%,
+          rgb(135, 181, 249) 112.1%
+        );
+        border-radius: 30px;
+        border: 0;
+        outline: none;
+        color: #fff;
+        font-weight: bold;
+        cursor: pointer;
+      }
+
+      button:disabled {
+        background-image: linear-gradient(
+          64.3deg,
+          rgba(200, 179, 184, 0.81) 17.7%,
+          rgb(149, 169, 198) 112.1%
+        );
+        cursor: none;
+      }
+
+      .title-text {
+        text-transform: uppercase;
+        text-align: center;
+        margin-bottom: 40px;
+        color: #777;
+      }
+
+      .p-small {
+        font-size: 15px;
+      }
+
+      .form-box {
+        width: 280px;
+        height: 330px;
+        padding: 30px 0 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        position: absolute;
+        top: 50px;
+        left: 30px;
+        transition: 0.5s;
+      }
+
+      .input-field {
+        width: 100%;
+        padding: 10px 5px;
+        margin-bottom: 5px;
+        border: 0;
+        border-bottom: 1px solid #999;
+        outline: none;
+        background: transparent;
+      }
+
+      .input-field::placeholder {
+        color: #999;
+      }
+
+      .container-all {
+        height: 100vh;
+        width: 100%;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .background {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        z-index: -1;
+      }
+      .container {
+        width: 360px;
+        height: 450px;
+        background: #fff;
+        border-radius: 5px;
+        position: relative;
+        overflow: hidden;
+      }
+      .input-box {
+        margin-bottom: 50px;
+      }
+
+      .btn-box {
+        position: absolute;
+        bottom: -5px;
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+      }
+
+      .step-col {
+        width: 120px;
+        text-align: center;
+        color: #333;
+        position: relative;
+      }
+
+      .step-row {
+        width: 360px;
+        height: 40px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        box-shadow: 0 4px 5px -2px #999;
+        position: relative;
+      }
+
+      .errors {
+        position: absolute;
+        top: 240px;
+      }
+
+      .error-text {
+        font-size: 11px;
+        color: #b60404;
+      }
+
+      #form2 {
+        left: 450px;
+      }
+
+      #form3 {
+        left: 450px;
+      }
+
+      #progress {
+        position: absolute;
+        height: 100%;
+        width: 120px;
+        background-image: linear-gradient(
+          64.3deg,
+          rgba(254, 122, 152, 0.81),
+          rgb(166, 170, 227)
+        );
+      }
+
+      #progress::after {
+        content: " ";
+        height: 0;
+        width: 0;
+        border-top: 20px solid transparent;
+        border-bottom: 20px solid transparent;
+        position: absolute;
+        right: -20px;
+        top: 0;
+        border-left: 20px solid rgb(166, 170, 227);
+      }
+
+      #errorMail {
+        display: none;
+      }
+
+      #errorPassword {
+        display: none;
+      }
+
+      #errorPasswordRepeat {
+        display: none;
+      }
+
+      #errorPasswordsDontMatch {
+        display: none;
+      }
+
+      #errorFirstName {
+        display: none;
+      }
+
+      #errorLastName {
+        display: none;
+      }
+
+      #errorMobile {
+        display: none;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container-all">
+      <img
+        src="https://cdn.pixabay.com/photo/2016/10/18/21/22/beach-1751455_1280.jpg"
+        class="background"
+        alt="Lorem ipsum"
+      />
+      <div class="container">
+        <div class="step-row">
+          <div id="progress"></div>
+          <div class="step-col">
+            <p class="p-small">Step 1</p>
+          </div>
+          <div class="step-col">
+            <p class="p-small">Step 2</p>
+          </div>
+          <div class="step-col">
+            <p class="p-small">Step 3</p>
+          </div>
+          <form class="form-box" id="form1">
+            <h1 class="title-text">Create account</h1>
+            <div class="input-box">
+              <input
+                type="text"
+                placeholder="Email"
+                id="inputMail"
+                class="inputValidate, input-field"
+                required
+              />
+              <p class="error-text" id="errorMail">Submit your email address</p>
+              <input
+                type="password"
+                placeholder="Password"
+                id="inputPassword"
+                class="inputValidate, input-field"
+                required
+              />
+              <p class="error-text" id="errorPassword">Create a password</p>
+              <input
+                type="password"
+                placeholder="Confirm password"
+                id="inputPasswordRepeat"
+                class="inputValidate, input-field"
+                required
+              />
+              <p class="error-text" id="errorPasswordRepeat">
+                Confirm your password
+              </p>
+              <p class="error-text" id="errorPasswordsDontMatch">
+                Passwords don't match
+              </p>
+            </div>
+            <div class="btn-box">
+              <button type="button" id="next1" disabled>Next</button>
+            </div>
+          </form>
+          <form class="form-box" id="form2">
+            <h3>Social Links</h3>
+            <div class="input-box">
+              <input class="input-field" type="text" placeholder="Media" />
+              <input class="input-field" type="text" placeholder="Github" />
+              <input class="input-field" type="text" placeholder="LinkedIn" />
+            </div>
+            <div class="btn-box">
+              <button type="button" id="back1">Back</button>
+              <button type="button" id="next2">Next</button>
+            </div>
+          </form>
+          <form class="form-box" id="form3">
+            <h3>Personal information</h3>
+            <div class="input-box">
+              <input
+                type="text"
+                placeholder="First name"
+                id="inputFirstName"
+                class="inputValidate, input-field"
+                required
+              />
+              <p class="error-text" id="errorFirstName">Submit your name</p>
+              <input
+                type="text"
+                placeholder="Last name"
+                id="inputLastName"
+                class="inputValidate, input-field"
+                required
+              />
+              <p class="error-text" id="errorLastName">Sumbit your last name</p>
+              <input
+                type="text"
+                placeholder="Mobile no."
+                id="inputMobile"
+                class="inputValidate, input-field"
+                required
+              />
+              <p class="error-text" id="errorMobile">
+                Submit your mobile number
+              </p>
+            </div>
+            <div class="btn-box">
+              <button type="button" id="back2">Back</button>
+              <button type="button" id="buttonSubmit" disabled>Submit</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <script>
+      const form1 = document.querySelector("#form1");
+      const form2 = document.querySelector("#form2");
+      const form3 = document.querySelector("#form3");
+      ///////
+      const buttonNext1 = document.querySelector("#next1");
+      const buttonNext2 = document.querySelector("#next2");
+      ///////
+      const buttonBack1 = document.querySelector("#back1");
+      const buttonBack2 = document.querySelector("#back2");
+      ///////
+      const formProgress = document.querySelector("#progress");
+      ///////
+      const moveToForm2 = () => {
+        form1.style.left = "-500px";
+        form2.style.left = "40px";
+        formProgress.style.width = "240px";
+      };
+      buttonNext1.addEventListener("click", moveToForm2);
+      //////
+      const moveBackToForm1 = () => {
+        form1.style.left = "40px";
+        form2.style.left = "550px";
+        formProgress.style.width = "120px";
+      };
+      buttonBack1.addEventListener("click", moveBackToForm1);
+      /////
+      const moveToForm3 = () => {
+        form2.style.left = "-550px";
+        form3.style.left = "40px";
+        formProgress.style.width = "360px";
+      };
+      buttonNext2.addEventListener("click", moveToForm3);
+      /////
+      const moveBackToForm2 = () => {
+        form2.style.left = "40px";
+        form3.style.left = "550px";
+        formProgress.style.width = "240px";
+      };
+      buttonBack2.addEventListener("click", moveBackToForm2);
+      /////
+      const inputMail = document.querySelector("#inputMail");
+      const inputPassword = document.querySelector("#inputPassword");
+      const inputConfirm = document.querySelector("#inputPasswordRepeat");
+      const inputName = document.querySelector("#inputFirstName");
+      const inputLastName = document.querySelector("#inputLastName");
+      const inputMobile = document.querySelector("#inputMobile");
+      /////
+      const errorMail = document.querySelector("#errorMail");
+      const errorPassword = document.querySelector("#errorPassword");
+      const errorPasswordConfirm = document.querySelector(
+        "#errorPasswordRepeat"
+      );
+      const errorPasswordConfirmNoMatch = document.querySelector(
+        "#errorPasswordsDontMatch"
+      );
+      const errorName = document.querySelector("#errorFirstName");
+      const errorLastName = document.querySelector("#errorLastName");
+      const errorMobile = document.querySelector("#errorMobile");
+      /////
+      const buttonSumbit = document.querySelector("#buttonSumbit");
+      ///// Enable Form 1 button
+      inputMail.addEventListener("input", () => {
+        if (
+          inputMail.value &&
+          inputMail.value.includes("@") &&
+          inputPassword.value &&
+          inputConfirm.value &&
+          inputPassword.value === inputConfirm.value
+        ) {
+          buttonNext1.disabled = false;
+        } else {
+          buttonNext1.disabled = true;
+        }
+      });
+      /////
+      inputPassword.addEventListener("input", () => {
+        if (
+          inputMail.value &&
+          inputMail.value.includes("@") &&
+          inputPassword.value &&
+          inputConfirm.value &&
+          inputPassword.value === inputConfirm.value
+        ) {
+          buttonNext1.disabled = false;
+        } else {
+          buttonNext1.disabled = true;
+        }
+      });
+      /////
+      inputConfirm.addEventListener("input", () => {
+        if (
+          inputMail.value &&
+          inputMail.value.includes("@") &&
+          inputPassword.value &&
+          inputConfirm.value &&
+          inputPassword.value === inputConfirm.value
+        ) {
+          buttonNext1.disabled = false;
+        } else {
+          buttonNext1.disabled = true;
+        }
+      });
+      //// Enable form 3 button
+      inputName.addEventListener("input", () => {
+        if (inputName.value && inputLastName.value && inputMobile.value) {
+          buttonSubmit.disabled = false;
+        } else {
+          buttonSubmit.disabled = true;
+        }
+      });
+      ////
+      inputLastName.addEventListener("input", () => {
+        if (inputName.value && inputLastName.value && inputMobile.value) {
+          buttonSumbit.disabled = false;
+        } else {
+          buttonSumbit.disabled = true;
+        }
+      });
+      ////
+      inputMobile.addEventListener("input", () => {
+        if (inputName.value && inputLastName.value && inputMobile.value) {
+          buttonSubmit.disabled = false;
+        } else {
+          buttonSubmit.disabled = true;
+        }
+      });
+      //// Validate errors blur////
+      inputMail.addEventListener("blur", () => {
+        if (!inputMail.value || !inputMail.value.includes("@")) {
+          errorMail.style.display = "block";
+        } else {
+          errorMail.style.display = "none";
+        }
+      });
+      /////
+      inputPassword.addEventListener("blur", () => {
+        if (!inputPassword.value) {
+          errorPassword.style.display = "block";
+        } else {
+          errorPassword.style.display = "none";
+        }
+      });
+      /////
+      inputConfirm.addEventListener("blur", () => {
+        if (!inputConfirm.value) {
+          errorPasswordConfirm.style.display = "block";
+        } else {
+          errorPasswordConfirm.style.display = "none";
+        }
+      });
+      /////
+      inputConfirm.addEventListener("blur", () => {
+        if (!inputConfirm.value) {
+          errorMail.style.display = "block";
+        } else {
+          errorMail.style.display = "none";
+        }
+      });
+      /////
+      inputConfirm.addEventListener("blur", () => {
+        if (inputPassword.value !== inputConfirm.value) {
+          errorPasswordConfirmNoMatch.style.display = "block";
+        } else {
+          errorPasswordConfirmNoMatch.style.display = "none";
+        }
+      });
+      /////
+      inputName.addEventListener("blur", () => {
+        if (!inputName.value) {
+          errorName.style.display = "block";
+        } else {
+          errorName.style.display = "none";
+        }
+      });
+      /////
+      inputLastName.addEventListener("blur", () => {
+        if (!inputLastName.value) {
+          errorLastName.style.display = "block";
+        } else {
+          errorLastName.style.display = "none";
+        }
+      });
+      /////
+
+      inputMobile.addEventListener("blur", () => {
+        if (!inputMobile.value) {
+          errorMobile.style.display = "block";
+        } else {
+          errorMobile.style.display = "none";
+        }
+      });
+      //// Validate errors input ///
+      inputMail.addEventListener("input", () => {
+        if (!inputMail.value || !inputMail.value.includes("@")) {
+          errorMail.style.display = "block";
+        } else {
+          errorMail.style.display = "none";
+        }
+      });
+      /////
+      inputPassword.addEventListener("input", () => {
+        if (!inputPassword.value) {
+          errorPassword.style.display = "block";
+        } else {
+          errorPassword.style.display = "none";
+        }
+      });
+      /////
+      inputConfirm.addEventListener("input", () => {
+        if (!inputConfirm.value) {
+          errorPasswordConfirm.style.display = "block";
+        } else {
+          errorPasswordConfirm.style.display = "none";
+        }
+      });
+      /////
+      inputConfirm.addEventListener("input", () => {
+        if (!inputConfirm.value) {
+          errorMail.style.display = "block";
+        } else {
+          errorMail.style.display = "none";
+        }
+      });
+      /////
+      inputConfirm.addEventListener("input", () => {
+        if (inputPassword.value !== inputConfirm.value) {
+          errorPasswordConfirmNoMatch.style.display = "block";
+        } else {
+          errorPasswordConfirmNoMatch.style.display = "none";
+        }
+      });
+      /////
+      inputName.addEventListener("input", () => {
+        if (!inputName.value) {
+          errorName.style.display = "block";
+        } else {
+          errorName.style.display = "none";
+        }
+      });
+      /////
+      inputLastName.addEventListener("input", () => {
+        if (!inputLastName.value) {
+          errorLastName.style.display = "block";
+        } else {
+          errorLastName.style.display = "none";
+        }
+      });
+      /////
+      inputMobile.addEventListener("input", () => {
+        if (!inputMobile.value) {
+          errorMobile.style.display = "block";
+        } else {
+          errorMobile.style.display = "none";
+        }
+      });
+    </script>
+  </body>
+</html>
