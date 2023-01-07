@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap");
+      * {
+        margin: 0;
+        border: 0;
+        box-sizing: border-box;
+      }
+      button {
+        cursor: pointer;
+      }
+
+      .container-all {
+        width: 100%;
+        height: 100vh;
+        background: url("https://img.freepik.com/free-vector/hand-painted-watercolor-tropical-leaves-background_23-2148961421.jpg?w=1380&t=st=1671023136~exp=1671023736~hmac=2d99bb70380aeb8b959defe0dff3827d5448267d8a3be48d7af3e163b51fa65f");
+        background-size: cover;
+        background-repeat: no-repeat;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+      }
+
+      .container-cart {
+        width: 60%;
+        min-height: 600px;
+        background: #fff;
+        border-radius: 30px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        box-shadow: 35px 39px 54px -15px rgba(26, 29, 26, 1);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .navbar {
+        width: 100%;
+        height: 70px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 20px;
+        background: #17583a;
+        border-radius: 30px 30px 0 0;
+        margin-bottom: 60px;
+      }
+
+      .logo-text {
+        font-family: "Abril Fatface";
+        font-size: 30px;
+        color: #fff;
+      }
+
+      .navbar-links li {
+        position: relative;
+      }
+      .navbar-links ul {
+        list-style: none;
+        display: flex;
+        gap: 20px;
+      }
+      .navbar-links a {
+        font-family: sans-serif;
+        font-size: 15px;
+        text-decoration: none;
+        color: #fff;
+        cursor: pointer;
+      }
+
+      .navbar-links li::after {
+        content: "";
+        height: 1px;
+        width: 0;
+        background: #fff;
+        position: absolute;
+        left: 0;
+        bottom: -5px;
+        transition: 0.5s;
+      }
+
+      .navbar-links li:hover::after {
+        width: 100%;
+      }
+
+      .cart-box {
+        width: 90%;
+        display: flex;
+        gap: 20px;
+      }
+
+      .leaf-image-box {
+        position: absolute;
+        height: 200px;
+        width: 220px;
+        top: 70px;
+        right: -30px;
+        z-index: 1;
+      }
+
+      .leaf-image {
+        width: 100%;
+        height: 100%;
+      }
+      .h1-box {
+        width: 90%;
+        display: flex;
+        justify-content: flex-start;
+        margin-bottom: 25px;
+      }
+
+      .h1,
+      .h2 {
+        font-family: sans-serif;
+        font-size: 20px;
+      }
+
+      .product-box {
+        width: 60%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      .total-box {
+        width: 40%;
+        height: 360px;
+        border: 4px solid #d6e25b;
+        display: flex;
+        flex-direction: column;
+        padding: 20px;
+      }
+
+      .product {
+        width: 100%;
+        height: 105px;
+        background-color: #d6e25b;
+        padding: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .product-pic {
+        height: 90%;
+        width: 15%;
+      }
+
+      .picture {
+        height: 100%;
+        width: 100%;
+      }
+
+      .product-desc {
+        height: 90%;
+        width: 100px;
+        display: flex;
+        align-items: center;
+      }
+
+      .text-weight-600 {
+        font-weight: 600;
+      }
+      .add-remove {
+        height: 90%;
+        width: 20%;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+      }
+
+      .price {
+        height: 90%;
+        width: 15%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .button-product {
+        width: 30px;
+        height: 30px;
+        background: transparent;
+        text-align: center;
+      }
+
+      .h2-box {
+        margin: 25px 0 25px 0;
+      }
+
+      .total-items-sum {
+        border-bottom: 2px solid #d6e25b;
+        width: 100%;
+        padding-bottom: 10px;
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 15px;
+      }
+
+      .total-items-sum p {
+        font-size: 17px;
+      }
+
+      .total-count {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .form-text {
+        margin-bottom: 10px;
+      }
+      .form-inputs-box {
+        margin-bottom: 20px;
+      }
+
+      .form-button-box {
+        display: flex;
+        justify-content: center;
+      }
+
+      .form-button {
+        font-size: 16px;
+        text-transform: uppercase;
+        padding: 15px 15px;
+        border-radius: 20px;
+        background: #d6e25b;
+        transition: 0.5s;
+      }
+
+      .form-button:hover {
+        background: #ebf390;
+      }
+
+      .number-of-products {
+        width: 20px;
+        background: transparent;
+        text-align: center;
+      }
+
+      .input-number {
+        padding: 10px;
+        width: 100%;
+        text-align: center;
+        background: transparent;
+      }
+
+      .input-number:focus {
+        outline: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container-all">
+      <div class="container-cart">
+        <nav class="navbar">
+          <div class="logo">
+            <p class="logo-text">Wibrux</p>
+          </div>
+          <div class="navbar-links">
+            <ul>
+              <li><a href="#">Home</a></li>
+              <li><a href="#">House plants</a></li>
+              <li><a href="#">Tripical plants</a></li>
+              <li><a href="#">Succulents</a></li>
+              <li><a href="#">About us</a></li>
+            </ul>
+          </div>
+        </nav>
+        <div class="h1-box">
+          <h1 class="h1">Cart</h1>
+        </div>
+        <div class="cart-box">
+          <div class="leaf-image-box">
+            <img src="leaf.png" class="leaf-image" />
+          </div>
+          <div class="product-box">
+            <div class="product">
+              <div class="product-pic">
+                <img src="plant1.png" alt="plant1" class="picture" />
+              </div>
+              <div class="product-desc">
+                <p>
+                  <span class="text-weight-600">Snake plant</span>
+                </p>
+              </div>
+              <div class="add-remove">
+                <button type="button" class="button-product" id="addProduct-1">
+                  +
+                </button>
+                <p class="number-of-products" id="numberOfProducts-1">
+                  <span class="text-weight-600">0</span>
+                </p>
+                <button
+                  type="button"
+                  class="button-product"
+                  id="minusProduct-1"
+                >
+                  -
+                </button>
+              </div>
+              <div class="price">
+                <p id="productsPrice-1">
+                  <span class="text-weight-600">0</span>
+                </p>
+              </div>
+            </div>
+            <div class="product">
+              <div class="product-pic">
+                <img src="plant2.png" alt="plant2" class="picture" />
+              </div>
+              <div class="product-desc">
+                <p>
+                  <span class="text-weight-600">Draceana</span>
+                </p>
+              </div>
+              <div class="add-remove">
+                <button type="button" class="button-product" id="addProduct-2">
+                  +
+                </button>
+                <p class="number-of-products" id="numberOfProducts-2">
+                  <span class="text-weight-600">0</span>
+                </p>
+                <button
+                  type="button"
+                  class="button-product"
+                  id="minusProduct-2"
+                >
+                  -
+                </button>
+              </div>
+              <div class="price">
+                <p id="productsPrice-2">
+                  <span class="text-weight-600">0</span>
+                </p>
+              </div>
+            </div>
+            <div class="product">
+              <div class="product-pic">
+                <img src="plant3.png" alt="plant3" class="picture" />
+              </div>
+              <div class="product-desc">
+                <p>
+                  <span class="text-weight-600">Iron plant </span>
+                </p>
+              </div>
+              <div class="add-remove">
+                <button type="button" class="button-product" id="addProduct-3">
+                  +
+                </button>
+                <p class="number-of-products" id="numberOfProducts-3">
+                  <span class="text-weight-600">0</span>
+                </p>
+                <button
+                  type="button"
+                  class="button-product"
+                  id="minusProduct-3"
+                >
+                  -
+                </button>
+              </div>
+              <div class="price">
+                <p id="productsPrice-3">
+                  <span class="text-weight-600">0</span>
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="total-box">
+            <div class="h2-box"><h2 class="h2">Total</h2></div>
+            <div class="total-items-sum">
+              <p>Total</p>
+              <p id="totalPrice">0</p>
+            </div>
+            <div class="form-box">
+              <form>
+                <p class="form-text">Please select your payment method:</p>
+                <div class="form-inputs-box">
+                  <input type="radio" class="input" />
+                  <label>cash</label><br />
+                  <input type="radio" class="input" />
+                  <label>credit card</label><br />
+                  <input type="radio" class="input" />
+                  <label>bank transfer</label>
+                </div>
+                <div class="form-button-box">
+                  <button type="button" class="form-button" id="formButton">
+                    Buy now
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      const productsList = [
+        {
+          name: "snake plant",
+          price: 38.59,
+        },
+
+        {
+          name: "draceana",
+          price: 25.15,
+        },
+
+        {
+          name: "iron plant",
+          price: 39.99,
+        },
+      ];
+
+      const addProduct1 = document.querySelector("#addProduct-1");
+      const minusProduct1 = document.querySelector("#minusProduct-1");
+      const addProduct2 = document.querySelector("#addProduct-2");
+      const minusProduct2 = document.querySelector("#minusProduct-2");
+      const addProduct3 = document.querySelector("#addProduct-3");
+      const minusProduct3 = document.querySelector("#minusProduct-3");
+
+      /// Add - Delete product
+      const changeCountProduct = (type, count) => {
+        const numberOfProduct = document.querySelector(
+          `#numberOfProducts-${count}`
+        );
+        const number = Number(numberOfProduct.textContent);
+        if (type === "add") {
+          numberOfProduct.innerHTML = number + 1;
+        } else if (type === "minus") {
+          if (number === 0) {
+            numberOfProduct.innerHTML = 0;
+          } else {
+            numberOfProduct.innerHTML = number - 1;
+          }
+        }
+      };
+
+      //////  Count product price
+
+      const putPrice = (count) => {
+        const productPrice = document.querySelector(`#productsPrice-${count}`);
+        const numberOfProduct = document.querySelector(
+          `#numberOfProducts-${count}`
+        );
+        const number = Number(numberOfProduct.textContent);
+        const price = productsList[count - 1].price * number;
+        const twoDecimalPrice = price.toFixed(2);
+
+        productPrice.innerHTML = twoDecimalPrice;
+      };
+
+      const countTotalPrice = (count) => {
+        const totalPrice = document.querySelector("#totalPrice");
+
+        const productPrice1 = document.querySelector("#productsPrice-1");
+        const productPrice2 = document.querySelector("#productsPrice-2");
+        const productPrice3 = document.querySelector("#productsPrice-3");
+        const productsPriceNumber1 = Number(productPrice1.textContent);
+        const productsPriceNumber2 = Number(productPrice2.textContent);
+        const productsPriceNumber3 = Number(productPrice3.textContent);
+        const total =
+          productsPriceNumber1 + productsPriceNumber2 + productsPriceNumber3;
+        const twoDecimalTotal = total.toFixed(2);
+        totalPrice.innerHTML = twoDecimalTotal;
+      };
+
+      addProduct1.addEventListener("click", () => {
+        changeCountProduct("add", "1");
+        putPrice("1");
+        countTotalPrice("1");
+      });
+
+      minusProduct1.addEventListener("click", () => {
+        changeCountProduct("minus", "1");
+        putPrice("1");
+        countTotalPrice("1");
+      });
+      addProduct2.addEventListener("click", () => {
+        changeCountProduct("add", "2");
+        putPrice("2");
+        countTotalPrice("2");
+      });
+      minusProduct2.addEventListener("click", () => {
+        changeCountProduct("minus", "2");
+        putPrice("2");
+        countTotalPrice("2");
+      });
+      addProduct3.addEventListener("click", () => {
+        changeCountProduct("add", "3");
+        putPrice("3");
+        countTotalPrice("3");
+      });
+      minusProduct3.addEventListener("click", () => {
+        changeCountProduct("minus", "3");
+        putPrice("3");
+        countTotalPrice("3");
+      });
+    </script>
+  </body>
+</html>
+
+<!--  
+    Attribution
+    background: Image by <a href="https://www.freepik.com/free-vector/hand-painted-watercolor-tropical-leaves-background_13994610.htm?query=background&collectionId=1074&&position=28&from_view=collections">Freepik</a>
+    
+    
+-->
